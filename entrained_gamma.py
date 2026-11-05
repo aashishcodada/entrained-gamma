@@ -79,13 +79,12 @@ def separate_disconts(sample: pd.Series) -> pd.DataFrame:
     split_cols = td_cols + pd_cols + ticks_cols + ['FirstPacketDateTime']
     return pd.DataFrame([sample]).explode(column=split_cols, ignore_index=True)
 
-def plot_spectrogram(channel, fs=250, nperseg=125, noverlap=None, **kwargs):
-    f, t, Sxx = spectrogram(channel, fs=fs, nperseg=nperseg, noverlap=noverlap)
+def plot_spectrogram(t, f, Sxx, **kwargs):
     plt.pcolormesh(t, f, 10*np.log10(Sxx), **kwargs)
     plt.colorbar(ax=plt.gca(), fraction=0.046, pad=0.02, label='psd (dB rel. to 1 µV²/Hz)')
     plt.ylabel('frequency (Hz)')
     plt.xlabel('time (s)')
-    return f, t, Sxx
+    return plt.gca()
 
 def plot_sample(sample: pd.Series, **kwargs):
     """
