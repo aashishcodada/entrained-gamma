@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from scipy.signal import spectrogram
 
 __all__ = ["get_time_BSTD", "plot_sample", "plot_spectrogram", "separate_disconts"]
 
